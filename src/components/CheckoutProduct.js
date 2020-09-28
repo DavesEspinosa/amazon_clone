@@ -3,10 +3,10 @@ import "./CheckoutProduct.css";
 import { useStateValue } from "./StateProvider";
 
 function CheckoutProduct(props) {
-  const { title, price, id, image, rating } = props;
-  const [{}, dispatch] = useStateValue();
-  
-  console.log(props);
+  const { title, price, id, image, rating, hideButton } = props;
+  const [, dispatch] = useStateValue();
+
+ // console.log(props);
 
   const removeFromBasket = () => {
     dispatch({
@@ -21,22 +21,24 @@ function CheckoutProduct(props) {
       <div className="checkoutProduct_info">
         <p className="checkoutProduct_title">{title}</p>
         <p className="checkoutProduct_price">
-          <small>€</small>
+          <small>$</small>
           <strong>{price}</strong>
         </p>
         <div className="checkoutProduct_rating">
           {/* create an array, llenala con el valor de rating, y recorrela */}
           {Array(rating)
             .fill()
-            .map((_) => (
-              <p>
+            .map((_, id) => (
+              <p key={id}>
                 <span role="img" aria-label="">
                   ⭐
                 </span>
               </p>
             ))}
         </div>
-        <button onClick={removeFromBasket}>Remove From Basket</button>
+        {!hideButton && (
+         <button onClick={removeFromBasket}>Remove From Basket</button>
+        )}
       </div>
     </div>
   );

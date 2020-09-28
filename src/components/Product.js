@@ -5,21 +5,20 @@ import { useStateValue } from "./StateProvider";
 function Product(props) {
   const { title, price, id, image, rating } = props;
 
-  const [{ }, dispatch] = useStateValue();
-
+  const [, dispatch] = useStateValue();
 
   const addToBasket = () => {
     //add item to basket
     dispatch({
-      type:'ADD_TO_BASKET',
-      item:{
+      type: "ADD_TO_BASKET",
+      item: {
         id,
         title,
         image,
         price,
-        rating
-      }
-    })
+        rating,
+      },
+    });
   };
 
   return (
@@ -27,15 +26,15 @@ function Product(props) {
       <div className="product_info">
         <p>{title}</p>
         <p className="product_price">
-          <small>€</small>
+          <small>$</small>
           <strong>{price}</strong>
         </p>
         <div className="product_rating">
           {/* create an array, llenala con el valor de rating, y recorrela */}
           {Array(rating)
             .fill()
-            .map((_) => (
-              <p>
+            .map((_, id) => (
+              <p key={id}>
                 <span role="img" aria-label="">
                   ⭐
                 </span>

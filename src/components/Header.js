@@ -8,7 +8,7 @@ import { auth } from "../firebase";
 
 function Header() {
   //it comes from the state, it's like a bottom to activate the movement, start to change the state
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }] = useStateValue();
 
   const handleAuthentication = () => {
     if (user) {
@@ -16,7 +16,7 @@ function Header() {
     }
   };
 
-  console.log(basket);
+  //console.log(basket);
 
   return (
     <nav className="header">
@@ -42,7 +42,7 @@ function Header() {
             </span>
           </div>
         </Link>
-        <Link to="/" className="header_link">
+        <Link to="/orders" className="header_link">
           <div className="header_option">
             <span className="header_optionLineOne">Returns</span>
             <span className="header_optionLineTwo">& Orders</span>
